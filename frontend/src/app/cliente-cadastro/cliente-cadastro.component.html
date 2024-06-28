@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center mb-4">{{ isEditMode ? 'Editar Cliente' : 'Criar Cliente' }}</h2>
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="cnpj">CNPJ</label>
+        <input id="cnpj" formControlName="cnpj" class="form-control" [readonly]="isEditMode"/>
+        <div *ngIf="clienteForm.get('cnpj')?.invalid && (clienteForm.get('cnpj')?.dirty || clienteForm.get('cnpj')?.touched)" class="text-danger">
+          <div *ngIf="clienteForm.get('cnpj')?.errors?.['required']">CNPJ é obrigatório.</div>
+          <div *ngIf="clienteForm.get('cnpj')?.errors?.['minlength'] || clienteForm.get('cnpj')?.errors?.['maxlength']">CNPJ deve ter 14 caracteres.</div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="razaoSocial">Razão Social</label>
+        <input id="razaoSocial" formControlName="razaoSocial" class="form-control" />
+        <div *ngIf="clienteForm.get('razaoSocial')?.invalid && (clienteForm.get('razaoSocial')?.dirty || clienteForm.get('razaoSocial')?.touched)" class="text-danger">
+          Razão Social é obrigatória.
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="usuario">Usuário</label>
+        <input id="usuario" formControlName="usuario" class="form-control" />
+        <div *ngIf="clienteForm.get('usuario')?.invalid && (clienteForm.get('usuario')?.dirty || clienteForm.get('usuario')?.touched)" class="text-danger">
+          Usuário é obrigatório.
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" formControlName="senha" class="form-control" />
+        <div *ngIf="clienteForm.get('senha')?.invalid && (clienteForm.get('senha')?.dirty || clienteForm.get('senha')?.touched)" class="text-danger">
+          <div *ngIf="clienteForm.get('senha')?.errors?.['required']">Senha é obrigatória.</div>
+          <div *ngIf="clienteForm.get('senha')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres.</div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status" class="form-control">
+          <option value="">Selecione...</option>
+          <option value="ATIVO">Ativo</option>
+          <option value="INATIVO">Inativo</option>
+        </select>
+        <div *ngIf="clienteForm.get('status')?.invalid && (clienteForm.get('status')?.dirty || clienteForm.get('status')?.touched)" class="text-danger">
+          Status é obrigatório.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Cadastrar</button>
+    </form>
+  </div>
+</div>

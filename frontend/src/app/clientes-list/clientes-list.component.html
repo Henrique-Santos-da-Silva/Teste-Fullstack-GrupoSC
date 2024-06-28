@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col text-end">
+    <button class="btn btn-outline-danger" type="submit" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container-list pb-4">
+  <h2 class="mb-4">Lista de Clientes</h2>
+  <button class="btn btn-outline-primary mb-3" type="submit" routerLink="/cadastro-cliente">Criar</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>CNPJ</th>
+      <th>Razão Social</th>
+      <th>Usuário</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.cnpj }}</td>
+      <td>{{ cliente.razaoSocial }}</td>
+      <td>{{ cliente.usuario }}</td>
+      <td>{{ cliente.status }}</td>
+      <td class="button-container">
+        <button type="button" class="btn btn-primary btn-sm">
+          <mat-icon class="mat-icon-add" fontIcon="edit" (click)="editCliente(cliente.cnpj)"></mat-icon>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">
+          <mat-icon class="mat-icon-add" fontIcon="delete" (click)="deleteCliente(cliente.cnpj)"></mat-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
